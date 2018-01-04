@@ -1,0 +1,81 @@
+<!--
+$json = file_get_contents('http://sgpvmc0140/blsstatistics/index.php?module=API&method=CustomVariables.getCustomVariablesValuesFromNameId&idSite=1&period=day&date='.$today_date.'&idSubtable=3&format=JSON&filter_limit=-1&token_auth=3a0770910273a7acd4ff7beeeb6917f4');
+$visits = json_decode($json, true);
+if(count($visits) > 0){
+	for($i=0;$i<count($visits);$i++){	
+		$course_sg[] = array('label'=>$visits[$i]['label'], 'visits'=>$visits[$i]['nb_visits']);
+	}
+}else{
+	$course_sg[] = array('label'=>"", 'visits'=>"");
+}
+-->
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<title>Pro Football Focus</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	
+</head>
+<body>
+	<div>
+		<div class="title">Pro Football Focus Results</div>
+		<div class="list">
+			<ul>
+				<li class="listmenu">01</li>
+				<li class="listmenu">02</li>
+				<li class="listmenu">03</li>
+			</ul>
+		</div>
+		<div class="tabledivclass">
+			<table align="center" width="90%" cellspacing="0" cellpadding="10" border="1">
+				<tr>
+					<th>Player</th>
+					<th>Team</th>
+					<th>Opponent</th>
+					<th>Attempts</th>
+					<th>Completions</th>
+					<th>Yards</th>
+					<th>Touchdowns</th>
+					<th>Interceptions</th>
+				</tr>
+				<tr>
+					<td>one</td>
+					<td>one</td>
+					<td>one</td>
+					<td>one</td>
+					<td>one</td>
+					<td>one</td>
+					<td>one</td>
+					<td>one</td>
+				</tr>
+				<tr>
+					<td>one</td>
+					<td>one</td>
+					<td>one</td>
+					<td>one</td>
+					<td>one</td>
+					<td>one</td>
+					<td>one</td>
+					<td>one</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$.ajax({ 
+				type: 'GET', 
+				url: 'http://web.profootballfocus.com.s3-website-us-east-1.amazonaws.com/quarterbacks.json', 
+				dataType: 'json',
+				success: function (data) { 
+					$.each(data, function(index, element) {
+						alert(element);
+					});
+				}
+			});
+		});
+	</script>
+</body>
+</html>
